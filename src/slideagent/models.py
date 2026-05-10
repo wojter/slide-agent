@@ -65,6 +65,13 @@ class SlideDecision(BaseModel):
     prompt: str = ""
 
 
+class CriticResponse(BaseModel):
+    """Visual Critic's evaluation of a generated image."""
+
+    verdict: CriticVerdict
+    feedback: str = ""
+
+
 class SlideResult(BaseModel):
     """Full pipeline result for a single slide."""
 
