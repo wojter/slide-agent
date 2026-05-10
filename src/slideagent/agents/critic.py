@@ -15,7 +15,7 @@ class VisualCritic:
     def __init__(self, client: OpenAI) -> None:
         self._client = client
         self._system = load_prompt("critic_system.md")
-        self._user = load_prompt("critic_user.md")
+        self._user_template = load_fragment("critic_user.md")
         self._visual_style = load_fragment("visual_style.md")
 
     def run(
@@ -25,7 +25,7 @@ class VisualCritic:
         slide: SlideData,
     ) -> CriticResponse:
         """Evaluate a generated image and return a pass/fail verdict with feedback."""
-        user_text = self._user.render(
+        user_text = self._user_template.format(
             slide_title=slide.title,
             slide_content=slide.content,
             slide_notes=slide.notes,

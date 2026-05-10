@@ -14,7 +14,7 @@ class GenerationAgent:
     def __init__(self, client: OpenAI) -> None:
         self._client = client
         self._system = load_prompt("generation_system.md")
-        self._user = load_prompt("generation_user.md")
+        self._user_template = load_fragment("generation_user.md")
         self._visual_style = load_fragment("visual_style.md")
         self._retry_template = load_fragment("retry_context.md")
 
@@ -82,7 +82,7 @@ class GenerationAgent:
         meta: PresentationMeta,
         retry_context: str,
     ) -> str:
-        return self._user.render(
+        return self._user_template.format(
             presentation_title=meta.title,
             presentation_description=meta.description,
             presentation_keywords=", ".join(meta.keywords),

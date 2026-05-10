@@ -20,8 +20,6 @@ class Settings(BaseSettings):
     image_quality: str = "low"
     image_size: str = "1024x1024"
 
-    generation_model: str = "gpt-5-nano"
-    critic_model: str = "gpt-5-nano"
     image_model: str = "gpt-image-2"
 
     @classmethod
